@@ -1,0 +1,159 @@
+:root {
+    --red: #d92d3a;
+    --red-dark: #b81f2c;
+    --green: #2e9e5b;
+    --green-dark: #23804a;
+    --gold: #ffd76a;
+    --ink: #ffffff;
+    --ink-soft: rgba(255, 255, 255, 0.82);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    background: #0d2a1f url('images/christmas-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif;
+    color: var(--ink);
+    overflow-x: hidden;
+}
+
+/* Dark green tint keeps the text readable over the photo */
+.overlay {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+    background:
+        radial-gradient(ellipse at center, rgba(10, 40, 28, 0.35) 0%, rgba(4, 18, 12, 0.8) 100%);
+}
+
+/* HERO CARD */
+.card-christmas {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 540px;
+    padding: 40px 32px 36px;
+    text-align: center;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    animation: card-in 0.8s ease-out both;
+}
+
+@keyframes card-in {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-family: 'Mountains of Christmas', 'Segoe UI', cursive;
+    font-size: clamp(2.3rem, 8vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    margin: 0 auto 30px;
+    max-width: 34ch;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+}
+
+/* QR + SNOWMEN */
+.qr-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+.qr {
+    display: block;
+    width: 280px;
+    max-width: 100%;
+    border-radius: 22px;
+    border: 5px solid #fff;
+    box-shadow: 0 0 0 3px var(--gold), 0 14px 34px rgba(0, 0, 0, 0.5);
+    background: #fff;
+}
+
+.snowman {
+    position: absolute;
+    width: 84px;
+    bottom: -28px;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.6));
+    pointer-events: none;
+}
+
+.snowman.left  { left: -42px; }
+.snowman.right { right: -42px; transform: scaleX(-1); }
+
+/* MUSIC BUTTON */
+.music-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 230px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 999px;
+    background: var(--red);
+    color: #fff;
+    font: 800 1rem 'Nunito', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(217, 45, 58, 0.45);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.music-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
+.music-btn:active { transform: translateY(0); }
+.music-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.music-btn.playing {
+    background: var(--green);
+    box-shadow: 0 8px 20px rgba(46, 158, 91, 0.45);
+}
+.music-btn.playing:hover { background: var(--green-dark); }
+
+.thanks {
+    margin: 22px 0 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+}
+
+/* SNOWFLAKES */
+.snowflake {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    color: #fff;
+    user-select: none;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* SMALL SCREENS */
+@media (max-width: 480px) {
+    .card-christmas { padding: 32px 20px 30px; border-radius: 26px; }
+    .qr { width: 240px; }
+    .snowman { width: 66px; bottom: -22px; }
+    .snowman.left  { left: -30px; }
+    .snowman.right { right: -30px; }
+    .music-btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-christmas { animation: none; }
+    .snowflake { display: none; }
+}

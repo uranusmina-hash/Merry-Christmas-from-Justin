@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>🎄 Merry Christmas from Justin! 🎄</title>
 
-<!-- ✅ OPEN GRAPH META TAGS (FOR SOCIAL PREVIEW) -->
+<!-- OPEN GRAPH META TAGS (FOR SOCIAL PREVIEW) -->
 <meta property="og:title" content="🎄 Merry Christmas from Justin! 🎄">
 <meta property="og:description" content="Scan my GCash QR and send your Christmas cheer! ❄️">
 <meta property="og:image" content="https://namasko-si-justin.netlify.app/images/christmas-bg.jpg">
@@ -16,112 +16,26 @@
 <!-- Twitter / Messenger Support -->
 <meta name="twitter:card" content="summary_large_image">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
 
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    background: url('images/christmas-bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
-    overflow-x: hidden;
-}
-
-.overlay {
-    background: rgba(0,0,0,0.6);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-}
-
-.card-christmas {
-    background: rgba(255,255,255,0.15);
-    border-radius: 20px;
-    padding: 20px;
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 2;
-}
-
-/* TEXT */
-h1 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-}
-p {
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-}
-
-/* QR + SNOWMEN */
-.qr-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 30px;
-}
-
-.qr {
-    width: 200px;
-    max-width: 100%;
-    border-radius: 15px;
-    display: block;
-}
-
-.snowman {
-    position: absolute;
-    width: 60px;
-    bottom: -18px;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,.6));
-}
-
-.snowman.left { left: -18px; }
-.snowman.right { right: -18px; }
-
-/* BUTTON */
-.music-btn {
-    background-color: #ff4d4d;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    width: 200px;
-}
-.music-btn:hover { background-color: #e63939; }
-.music-btn.playing { background-color: #4CAF50; }
-
-/* SNOWFLAKES */
-.snowflake {
-    position: fixed;
-    top: -10px;
-    z-index: 1;
-    user-select: none;
-    pointer-events: none;
-    color: #fff;
-    font-size: 1em;
-    opacity: 0.8;
-}
-</style>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 
 <body>
 
 <div class="overlay">
-    <div class="card-christmas">
+    <main class="card-christmas">
 
         <h1>🎄 Merry Christmas<br>from Justin! 🎄</h1>
-        <p>Scan my GCash QR to send your Christmas cheer!</p>
+        <p class="subtitle">Scan my GCash QR to send your Christmas cheer!</p>
 
         <div class="qr-wrapper">
-            <img src="images/gcash-qr.jpg" class="qr" alt="GCash QR">
-            <img src="images/snowman.png" class="snowman left" alt="Snowman">
-            <img src="images/snowman.png" class="snowman right" alt="Snowman">
+            <img src="images/gcash-qr.jpg" class="qr" alt="GCash QR code">
+            <img src="images/snowman.png" class="snowman left" alt="">
+            <img src="images/snowman.png" class="snowman right" alt="">
         </div>
 
         <!-- AUDIO -->
@@ -129,61 +43,14 @@ p {
             <source src="audio/christmas.mp3" type="audio/mpeg">
         </audio>
 
-        <button id="musicBtn" class="music-btn">🎵 Play Music</button>
+        <div>
+            <button id="musicBtn" class="music-btn" type="button">🎵 Play Music</button>
+        </div>
 
-    </div>
+        <p class="thanks">Maraming salamat and God bless! 🎁</p>
+
+    </main>
 </div>
-
-<!-- ❄️ SNOW EFFECT -->
-<script>
-const snowCount = 50;
-for (let i = 0; i < snowCount; i++) {
-    const snow = document.createElement('div');
-    snow.className = 'snowflake';
-    snow.innerHTML = '❄';
-    snow.style.left = Math.random() * window.innerWidth + 'px';
-    snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
-    snow.style.opacity = Math.random();
-    document.body.appendChild(snow);
-
-    let y = Math.random() * window.innerHeight;
-    let x = parseFloat(snow.style.left);
-    let speed = Math.random() * 2 + 1;
-
-    (function fall(){
-        y += speed;
-        x += Math.sin(y / 50) * 1.5;
-        snow.style.top = y + 'px';
-        snow.style.left = x + 'px';
-
-        if (y > window.innerHeight) {
-            y = -10;
-            x = Math.random() * window.innerWidth;
-        }
-        requestAnimationFrame(fall);
-    })();
-}
-</script>
-
-<!-- 🎵 MUSIC -->
-<script>
-const music = document.getElementById('christmasSong');
-const btn = document.getElementById('musicBtn');
-let playing = false;
-
-btn.addEventListener('click', () => {
-    if (playing) {
-        music.pause();
-        btn.textContent = '🎵 Play Music';
-        btn.classList.remove('playing');
-    } else {
-        music.play();
-        btn.textContent = '⏸️ Pause Music';
-        btn.classList.add('playing');
-    }
-    playing = !playing;
-});
-</script>
 
 </body>
 </html>
